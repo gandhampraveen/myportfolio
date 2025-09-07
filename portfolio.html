@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Praveen Gandham – Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #ff004f;
+      --bg-color: #101010;
+      --light-bg: #222;
+      --text-color: #eee;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .sub-title {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    header {
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      width: 50px;
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      bottom: -5px;
+      left: 0;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      color: white;
+      border: none;
+    }
+
+    .header-text {
+      margin-top: 40px;
+    }
+
+    .header-text h1 span {
+      color: var(--primary-color);
+    }
+
+    /* About */
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .about-col-1 img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 15px;
+    }
+
+    .tab-titles {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .tab-links {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 1rem;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .tab-links.active-link::after {
+      content: '';
+      width: 50%;
+      height: 2px;
+      background: var(--primary-color);
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    .tab-contents {
+      display: none;
+    }
+
+    .tab-contents.active-tab {
+      display: block;
+    }
+
+    .tab-contents ul {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .tab-contents li {
+      margin-bottom: 1rem;
+    }
+
+    .tab-contents span {
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    /* Services */
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .service {
+      background: var(--light-bg);
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .service:hover {
+      transform: translateY(-5px);
+      background: var(--primary-color);
+      color: #fff;
+    }
+
+    /* Portfolio Skills */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .work {
+      text-align: center;
+    }
+
+    .work img {
+      width: 80px;
+    }
+
+    /* Contact */
+    .contact-left,
+    .contact-right {
+      flex: 1;
+    }
+
+    .contact-left p,
+    .contact-right form {
+      margin-top: 1rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      color: var(--text-color);
+      font-size: 1.5rem;
+    }
+
+    .social-icons a:hover {
+      color: var(--primary-color);
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    form button {
+      margin-top: 10px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    form button:hover {
+      background: #cc003b;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--light-bg);
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        padding: 15px;
+        border-radius: 10px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .row {
+        flex-direction: column;
+      }
+
+      .header-text h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <div class="container">
+      <nav>
+        <img src="https://i.ibb.co/Ld7MrVYW/IMG-20240814-084339.jpg" alt="Logo" class="logo">
+        <ul class="nav-links">
+          <li><a href="#header">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-toggle"><i class="fas fa-bars"></i></button>
+      </nav>
+      <div class="header-text">
+        <p>WEB DEVELOPER</p>
+        <h1>Hi, I'm <span>Praveen</span><br>from India</h1>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="sub-title">About Me</h2>
+      <div class="row">
+        <div class="about-col-1">
+          <img src="https://i.ibb.co/JRxPHdNt/Snapchat-1276561135-2.jpg" alt="Profile photo">
+        </div>
+        <div class="about-col-2">
+          <div class="tab-titles">
+            <button class="tab-links active-link" data-tab="Skills">Skills</button>
+            <button class="tab-links" data-tab="Education">Education</button>
+            <button class="tab-links" data-tab="Projects">Projects</button>
+          </div>
+
+          <div class="tab-contents active-tab" id="Skills">
+            <ul>
+              <li><span>HTML, CSS, JS</span><br>Front-end Development</li>
+              <li><span>Web Development</span><br>Responsive Websites</li>
+              <li><span>Communication</span><br>Team Collaboration</li>
+            </ul>
+          </div>
+          <div class="tab-contents" id="Education">
+            <ul>
+              <li><span>SSC – 10th</span><br>GGHS</li>
+              <li><span>Intermediate</span><br>SR College</li>
+              <li><span>B.Tech</span><br>SRGEC</li>
+            </ul>
+          </div>
+          <div class="tab-contents" id="Projects">
+            <ul>
+              <li><span>JavaScript Projects</span></li>
+              <li><span>Weather App</span></li>
+              <li><span>Portfolio</span></li>
+            </ul>
+             </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2 class="sub-title">My Services</h2>
+      <div class="services-list">
+        <div class="service">
+          <h3>Web Development</h3>
+          <p>I build responsive and interactive websites using HTML, CSS, and JavaScript.</p>
+        </div>
+        <div class="service">
+          <h3>Portfolio Design</h3>
+          <p>I design personal and professional portfolio websites to showcase your skills.</p>
+        </div>
+        <div class="service">
+          <h3>Weather App</h3>
+          <p>Integration of APIs to build real-time weather applications using JavaScript.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <h2 class="sub-title">Technologies I Use</h2>
+      <div class="skills-list">
+        <div class="work">
+          <img src="https://i.ibb.co/DH70cySW/640px-HTML5-logo-and-wordmark-svg.png" alt="HTML5">
+          <p>HTML5</p>
+        </div>
+        <div class="work">
+          <img src="https://i.ibb.co/jqGvjHY/html-css-js-icons-11563328364gmstz4ubs9.png" alt="CSS3">
+          <p>CSS3</p>
+        </div>
+        <div class="work">
+          <img src="https://i.ibb.co/Gv8Qy0TW/78-789631-html-css-javascript-icons-hd-png-download.png" alt="JavaScript">
+          <p>JavaScript</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="contact-left">
+          <h2 class="sub-title">Contact Info</h2>
+          <p><i class="fas fa-paper-plane"></i> gandhamproveen@gmail.com</p>
+          <p><i class="fas fa-phone-square-alt"></i> 6300691916</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/praveen-gandham-40ba41336" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/praveen.gandham_143" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter-square"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-right">
+          <h2 class="sub-title">Send Me a Message</h2>
+          <form>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+            
+            
+
+<script>
+  
+  
+  // Tab switching functionality
+const tabs = document.querySelectorAll('.tab-links');
+const contents = document.querySelectorAll('.tab-contents');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    // Remove active class from all
+    tabs.forEach(t => t.classList.remove('active-link'));
+    contents.forEach(c => c.classList.remove('active-tab'));
+
+    // Add active class to current
+    tab.classList.add('active-link');
+    document.getElementById(tab.dataset.tab).classList.add('active-tab');
+  });
+});
+
+// Mobile nav toggle
+document.querySelector('.nav-toggle').addEventListener('click', () => {
+  document.querySelector('.nav-links').classList.toggle('show');
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
